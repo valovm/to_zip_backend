@@ -2,13 +2,12 @@ require 'rails_helper'
 
 def folder_to_hash(folder)
   entries = Dir.entries(folder) - %w[. .. .DS_Store]
-  entries.reduce({}) do |res, item|
+  entries.each_with_object({}) do |item, res|
     res[item] = if File.directory? File.join(folder, item)
                   folder_to_hash File.join(folder, item)
                 else
                   :file
                 end
-    res
   end
 end
 
@@ -16,9 +15,9 @@ RSpec.describe ArchiveConvector::Extract do
   subject { ArchiveConvector::Extract }
 
   let(:path_to_output_folder) { Rails.root.join('tmp', 'archive_convertor', 'extract', 'output').to_s }
-  let(:path_to_rar_file) {
+  let(:path_to_rar_file) do
     Rails.root.join('spec', 'files_for_test', 'archives', 'extract', 'input', 'Кирилица.rar').to_s
-  }
+  end
   let(:entries) do
     {
       'Подпапка' => {

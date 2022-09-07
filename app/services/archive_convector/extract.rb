@@ -1,7 +1,7 @@
 # frozen_string_literal: true
+
 module ArchiveConvector
   class Extract < BaseService
-
     def call(path_to_file, path_to_folder)
       result_folder = File.join path_to_folder, File.basename(path_to_file, '.*')
       path_to_folder = File.join path_to_folder, SecureRandom.alphanumeric
@@ -24,6 +24,5 @@ module ArchiveConvector
 
       path_to_folder
     end
-
   end
 end
