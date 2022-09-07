@@ -54,3 +54,5 @@ gem 'rubyzip'
 
 # File storage
 gem 'carrierwave', '~> 2.0'
+
+gem 'sidekiq', '~> 4.1', '>= 4.1.2'
