@@ -31,7 +31,7 @@ RSpec.describe ArchiveConvector::Extract do
 
     context 'Rar file' do
       let(:path_to_rar_file) do
-        Rails.root.join('spec', 'files_for_test', 'archives', 'extract', 'input', 'Кирилица.rar').to_s
+        Rails.root.join('spec', 'files', 'archives', 'extract', 'input', 'Кирилица.rar').to_s
       end
       let(:entries) do
         {
@@ -53,7 +53,7 @@ RSpec.describe ArchiveConvector::Extract do
 
     context 'Tar file' do
       let(:path_to_rar_file) do
-        Rails.root.join('spec', 'files_for_test', 'archives', 'extract', 'input', 'Кирилица.tar').to_s
+        Rails.root.join('spec', 'files', 'archives', 'extract', 'input', 'Кирилица.tar').to_s
       end
       let(:entries) do
         {

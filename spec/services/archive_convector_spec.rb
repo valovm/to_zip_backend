@@ -6,7 +6,7 @@ RSpec.describe ArchiveConvector do
   describe '.convert' do
     let(:path_to_output_folder) { Rails.root.join('tmp', 'archive_convertor', 'zip', 'output').to_s }
     let(:path_to_rar_file) do
-      Rails.root.join('spec', 'files_for_test', 'archives', 'extract', 'input', 'Кирилица.rar').to_s
+      Rails.root.join('spec', 'files', 'archives', 'extract', 'input', 'Кирилица.rar').to_s
     end
 
     specify do
