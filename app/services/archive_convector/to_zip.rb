@@ -2,7 +2,7 @@ require 'rubygems'
 require 'zip'
 
 module ArchiveConvector
-  class ToZip < BaseService
+  class ToZip
     def call(path_to_folder, path_to_file)
       @input_dir = path_to_folder
       zipfile_path = "#{path_to_file}.zip"

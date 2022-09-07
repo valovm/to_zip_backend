@@ -12,7 +12,7 @@ def folder_to_hash(folder)
 end
 
 RSpec.describe ArchiveConvector::Extract do
-  subject { ArchiveConvector::Extract }
+  subject { ArchiveConvector::Extract.new }
 
   shared_examples 'extract_success' do
     specify do

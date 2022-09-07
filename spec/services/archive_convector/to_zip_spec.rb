@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe ArchiveConvector::ToZip do
-  subject { ArchiveConvector::ToZip }
+  subject { ArchiveConvector::ToZip.new }
 
   describe '.call' do
     let(:path_to_folder) { Rails.root.join('spec', 'files_for_test', 'archives', 'zip', 'input').to_s }
