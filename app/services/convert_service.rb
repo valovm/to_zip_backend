@@ -20,5 +20,7 @@ class ConvertService
     FileUtils.rm_rf zip_path
 
     archive_file
+  rescue
+    archive_file.update! state: :failed
   end
 end
