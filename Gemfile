@@ -49,6 +49,7 @@ group :development do
   # gem "spring"
 end
 
+# Archive Libs
 gem 'ffi-libarchive'
 gem 'rubyzip'
 
@@ -56,3 +57,6 @@ gem 'rubyzip'
 gem 'carrierwave', '~> 2.0'
 
 gem 'sidekiq', '~> 4.1', '>= 4.1.2'
+
+# Cors
+gem 'rack-cors'

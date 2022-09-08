@@ -28,6 +28,6 @@ class ConvertController < ApplicationController
   private
 
   def upload_params
-    params.require(:archive).permit(:file)
+    params.permit(:file)
   end
 end

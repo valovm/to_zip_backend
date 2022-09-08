@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_07_181326) do
   create_table "archive_files", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "input"
     t.string "output"
-    t.integer "state", default: 0, null: false
+    t.integer "state", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
