@@ -8,7 +8,7 @@ RSpec.describe 'Converts', type: :request do
 
     let(:valid_params_file) do
       file_url = Rails.root.join('spec', 'files', 'archives', 'extract', 'input', 'Кирилица.rar').to_s
-      { archive: { file: Rack::Test::UploadedFile.new(file_url) } }
+      { file: Rack::Test::UploadedFile.new(file_url) }
     end
 
     it 'with valid file' do
