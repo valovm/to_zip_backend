@@ -10,7 +10,7 @@ class OutputArchiveFileUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{model.id}/output"
+    "uploads/#{model.class.to_s.underscore}/output/#{model.id}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -37,6 +37,10 @@ class OutputArchiveFileUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   def extension_allowlist
     %i[zip]
+  end
+
+  def size_range
+    0..100.megabytes
   end
 
   # Override the filename of the uploaded files:

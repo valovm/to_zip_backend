@@ -1,5 +1,4 @@
 class ConvertService
-
   EXTRACTION_SERVICE ||= ArchiveConvector::Extract.new
   TO_ZIP_SERVICE ||= ArchiveConvector::ToZip.new
 

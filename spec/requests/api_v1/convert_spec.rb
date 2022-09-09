@@ -2,6 +2,16 @@ require 'rails_helper'
 
 RSpec.describe 'Converts', type: :request do
 
+  # GET api/v1/convert
+  describe '/upload' do
+    let(:base_url) { '/api/v1/convert' }
+
+    it 'with valid file' do
+      get base_url
+      expect(response).to have_http_status(200)
+    end
+  end
+
   # POST api/v1/convert/upload
   describe '/upload' do
     let(:base_url) { '/api/v1/convert/upload' }

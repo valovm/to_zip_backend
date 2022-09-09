@@ -1,5 +1,12 @@
 class ConvertController < ApplicationController
 
+  def index
+    render json: {
+      extract_extname: ArchiveConvector::Extract.extension_allowlist,
+      limit_file_size: '100 MB',
+    }
+  end
+
   def upload
     a = ArchiveFile.create! input: upload_params[:file]
     ArchiveConvertJob.perform_later archive_file_id: a.id

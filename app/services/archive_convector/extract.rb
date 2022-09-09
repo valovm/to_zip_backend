@@ -2,7 +2,14 @@
 
 module ArchiveConvector
   class Extract
+
+    def self.extension_allowlist
+      %w[.tar .rar]
+    end
+
     def call(path_to_file, path_to_folder)
+      raise 'unknown_format_file' unless Extract.extension_allowlist.include? File.extname(path_to_file)
+
       result_folder = File.join path_to_folder, File.basename(path_to_file, '.*')
       path_to_folder = File.join path_to_folder, SecureRandom.alphanumeric
       Dir.mkdir path_to_folder

@@ -5,10 +5,12 @@ Rails.application.routes.draw do
 
   scope :api do
     scope :v1 do
-      namespace :convert do
-        post :upload
-        get :status
-        get :download
+      resources :convert, only: %i[index] do
+        collection do
+          post :upload
+          get :status
+          get :download
+        end
       end
     end
   end
