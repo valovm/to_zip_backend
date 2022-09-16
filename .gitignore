@@ -29,3 +29,12 @@
 /config/master.key
 
 /.idea
+
+/.env.local.test
+/.env.local.production
+/.env.local.development
+/.env.local
+/.env.test
+/.env.production
+/.env.development
+/.env

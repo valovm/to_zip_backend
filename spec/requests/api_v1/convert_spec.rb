@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Converts', type: :request do
 
   # GET api/v1/convert
-  describe '/upload' do
+  describe '/convert' do
     let(:base_url) { '/api/v1/convert' }
 
     it 'with valid file' do

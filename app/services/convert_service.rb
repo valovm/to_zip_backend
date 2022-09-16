@@ -3,10 +3,9 @@ class ConvertService
   TO_ZIP_SERVICE ||= ArchiveConvector::ToZip.new
 
   def self.call(archive_file:)
+    archive_file.update! state: :extracting
     basename = File.basename(archive_file.input.current_path, '.*')
     folder = File.dirname(archive_file.input.current_path)
-
-    archive_file.update! state: :extracting
     extract_folder = EXTRACTION_SERVICE.call archive_file.input.current_path, folder
     archive_file.update! state: :compressing
     zip_path = TO_ZIP_SERVICE.call extract_folder, File.join(folder, basename)
