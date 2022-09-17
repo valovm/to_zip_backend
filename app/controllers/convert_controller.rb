@@ -3,7 +3,7 @@ class ConvertController < ApplicationController
   def index
     render json: {
       extract_extname: ArchiveConvector::Extract.extension_allowlist,
-      limit_file_size: '100 MB',
+      limit_file_size: '100 MB'
     }
   end
 
