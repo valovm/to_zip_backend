@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe ArchiveConvertJob do
-  subject { ArchiveConvertJob }
+RSpec.describe Convertor::ConvertJob do
+  subject { described_class }
 
   describe '.perform' do
     let(:archive_file) { create :archive_file }

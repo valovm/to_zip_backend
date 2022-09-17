@@ -9,7 +9,7 @@ class ConvertController < ApplicationController
 
   def upload
     a = ArchiveFile.create! input: upload_params[:file]
-    ArchiveConvertJob.perform_later archive_file_id: a.id
+    Convertor::ConvertJob.perform_later archive_file_id: a.id
     render json: { archive_file: {
       id: a.id,
       filename: File.basename(a.input_identifier, '.*'),
