@@ -52,7 +52,7 @@ RSpec.describe 'Converts', type: :request do
   # GET api/v1/convert/download?id=
   describe '/download' do
     let(:base_url) { '/api/v1/convert/download' }
-    let(:archive_file) { create :archive_file, :completed }
+    let(:archive_file) { create :archive_file, :seeding }
 
     it 'with valid file' do
       get base_url, params: { id: archive_file.id }
