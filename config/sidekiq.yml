@@ -1,0 +1,8 @@
+---
+:concurrency: <%= ENV['RAILS_MAX_THREADS'] || 5 %>
+
+:queues:
+  - [cleaner_jobs, 100]
+
+:limits:
+  send_coins: 1

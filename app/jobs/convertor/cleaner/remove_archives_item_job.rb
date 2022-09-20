@@ -6,6 +6,7 @@ module Convertor
         archive_file = ArchiveFile.find(archive_file_id)
         archive_file.remove_input!
         archive_file.remove_output!
+        archive_file.save
       end
     end
   end

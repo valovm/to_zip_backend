@@ -59,6 +59,7 @@ gem 'carrierwave', '~> 2.0'
 
 # Sidekiq
 gem 'sidekiq', '~> 4.1', '>= 4.1.2'
+gem 'sidekiq-scheduler', '~> 3.0.1'
 
 # Cors
 gem 'rack-cors'

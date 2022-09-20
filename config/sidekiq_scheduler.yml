@@ -1,0 +1,5 @@
+# Cron helper: https://crontab.guru
+
+Convertor::Cleaner::RemoveArchivesJob:
+  cron: '*/1 * * * *' # every 3m
+  queue: cleaner_jobs
