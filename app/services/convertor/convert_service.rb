@@ -11,7 +11,8 @@ module Convertor
       archive_file.update! state: :compressing
       zip_path = TO_ZIP_SERVICE.call extract_folder, File.join(folder, basename)
 
-      archive_file.state = :completed
+      archive_file.state = :seeding
+      archive_file.seed_started_at = DateTime.current
       File.open(zip_path) { |f| archive_file.output = f }
       archive_file.save!
 
@@ -20,7 +21,9 @@ module Convertor
 
       archive_file
     rescue
-      archive_file.update! state: :failed
+      archive_file.state = :failed
+      archive_file.remove_input!
+      archive_file.save!
     end
   end
 end
