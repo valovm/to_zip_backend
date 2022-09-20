@@ -28,7 +28,7 @@ class ConvertController < ApplicationController
   end
 
   def download
-    a = ArchiveFile.completed.find(params[:id])
+    a = ArchiveFile.seeding.find(params[:id])
     send_file(
       a.output.current_path,
       disposition: 'attachment',

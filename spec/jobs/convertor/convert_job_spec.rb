@@ -9,7 +9,7 @@ RSpec.describe Convertor::ConvertJob do
     specify 'should completed' do
       expect{
         subject.perform_now(archive_file_id: archive_file.id)
-      }.to change{archive_file.reload.state}.from('pending').to('completed')
+      }.to change{archive_file.reload.state}.from('pending').to('seeding')
     end
   end
 end
