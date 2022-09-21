@@ -63,3 +63,7 @@ gem 'sidekiq-scheduler', '~> 3.0.1'
 
 # Cors
 gem 'rack-cors'
+
+# Dry
+gem 'dry-monads'
+gem 'dry-validation'

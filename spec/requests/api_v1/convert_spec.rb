@@ -21,12 +21,23 @@ RSpec.describe 'Converts', type: :request do
       { file: Rack::Test::UploadedFile.new(file_url) }
     end
 
-    it 'with valid file' do
-      post base_url, params: valid_params_file
-      expect(response).to have_http_status(201)
+    context 'when valid response' do
+      specify do
+        post base_url, params: valid_params_file
+        expect(response).to have_http_status(201)
+      end
     end
-  end
 
+    context 'when large file' do
+      before do
+        allow(Convertor).to receive(:max_input_fize_size).and_return(1.megabytes)
+      end
+      specify do
+        post base_url, params: valid_params_file
+        expect(response).to have_http_status(422)
+      end
+  end
+  end
   # GET api/v1/convert/status?id=
   describe '/status' do
     let(:base_url) { '/api/v1/convert/status' }

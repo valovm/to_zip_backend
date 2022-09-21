@@ -10,16 +10,17 @@ class ConvertController < ApplicationController
   end
 
   def upload
-    raise 'filesize_is_too_large' if upload_params[:file].size > Convertor.max_input_fize_size
-    raise Convertor.status unless Convertor.ok?
-
-    a = ArchiveFile.create! input: upload_params[:file]
-    Convertor::ConvertJob.perform_later archive_file_id: a.id
-    render json: { archive_file: {
-      id: a.id,
-      filename: File.basename(a.input_identifier, '.*'),
-      ext: File.extname(a.input_identifier)
-    } }, status: :created
+    result = Convertor::NewTaskService.call(file: upload_params[:file])
+    if result.success?
+      archive_file = result.value![:archive_file]
+      render json: { archive_file: {
+        id: archive_file.id,
+        filename: File.basename(archive_file.input_identifier, '.*'),
+        ext: File.extname(archive_file.input_identifier)
+      } }, status: 201
+    else
+      render json_api_errors(result.failure[:errors], 422)
+    end
   end
 
   def status

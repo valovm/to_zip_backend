@@ -23,5 +23,4 @@ module Convertor
   def self.seed_timeout
     SEED_TIMEOUT
   end
-
 end
