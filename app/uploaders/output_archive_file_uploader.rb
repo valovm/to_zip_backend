@@ -39,10 +39,6 @@ class OutputArchiveFileUploader < CarrierWave::Uploader::Base
     %i[zip]
   end
 
-  def size_range
-    0..100.megabytes
-  end
-
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename

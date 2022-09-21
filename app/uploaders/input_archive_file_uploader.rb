@@ -39,6 +39,10 @@ class InputArchiveFileUploader < CarrierWave::Uploader::Base
     %i[rar tar]
   end
 
+  def size_range
+    0..Convertor.max_input_fize_size
+  end
+
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename
