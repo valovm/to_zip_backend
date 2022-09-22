@@ -25,7 +25,20 @@ class ConvertController < ApplicationController
 
   def status
     a = ArchiveFile.find(params[:id])
-    render json: { archive_file: { state: a.state } }
+    if a.state == 'seeding'
+      render json: { archive_file: {
+        filename: File.basename(a.output_identifier, '.*'),
+        ext: File.extname(a.output_identifier),
+        state: a.state
+      } }
+    else
+      render json: { archive_file: {
+        filename: File.basename(a.input_identifier, '.*'),
+        ext: File.extname(a.input_identifier),
+        state: a.state
+      } }
+    end
+
   end
 
   def download

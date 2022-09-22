@@ -26,7 +26,7 @@ module Responses
 
   def format_error(error, status)
     case error
-    when String
+    when Symbol, String
       {
         status: status,
         code: error,
