@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:7.0.5
+    container_name: to_zip_redis
+    volumes:
+      - ../redis:/data
+  db:
+    image: postgres:14.1
+    container_name: to_zip_postgres
+    expose:
+      - 5433
+    volumes:
+      - ../data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: to_zip_user
+      POSTGRES_PASSWORD: to_zip_password
+    command: -p 5433
+  backend:
+    build: .
+    container_name: to_zip_backend
+    environment:
+      RAILS_ENV: production
+      RAILS_MAX_THREADS: 5
+      DB_URL: postgres://to_zip_user:to_zip_password@db:5433/to_zip
+      CONVERTOR_LIMIT_QUEUE: 30
+      CONVERTOR_LIMIT_INPUT_FILE_SIZE: 100
+      CONVERTOR_SEED_TIMEOUT: 1800
+      CONVERTOR_SEED_LIMIT: 100
+    volumes:
+      - .:/app
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+      - redis
