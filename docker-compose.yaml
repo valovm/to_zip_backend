@@ -28,10 +28,29 @@ services:
       CONVERTOR_LIMIT_INPUT_FILE_SIZE: 100
       CONVERTOR_SEED_TIMEOUT: 1800
       CONVERTOR_SEED_LIMIT: 100
+      REDIS_URL: redis://redis:6379
     volumes:
       - .:/app
     ports:
       - '3000:3000'
+    depends_on:
+      - db
+      - redis
+  sidekiq:
+    build: .
+    container_name: to_zip_sidekiq
+    command: bundle exec sidekiq
+    environment:
+      RAILS_ENV: production
+      RAILS_MAX_THREADS: 5
+      DB_URL: postgres://to_zip_user:to_zip_password@db:5433/to_zip
+      CONVERTOR_LIMIT_QUEUE: 30
+      CONVERTOR_LIMIT_INPUT_FILE_SIZE: 100
+      CONVERTOR_SEED_TIMEOUT: 1800
+      CONVERTOR_SEED_LIMIT: 100
+      REDIS_URL: redis://redis:6379
+    volumes:
+      - .:/app
     depends_on:
       - db
       - redis

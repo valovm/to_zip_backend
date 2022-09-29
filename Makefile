@@ -10,7 +10,7 @@ ps:
 restart: stop start
 
 logs:
-	docker-compose logs -f --tail=100 backend
+	docker-compose logs -f --tail=100 sidekiq
 c:
 	docker-compose exec backend rails c
 sh:
