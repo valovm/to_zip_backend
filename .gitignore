@@ -38,3 +38,4 @@
 /.env.production
 /.env.development
 /.env
+/.env.docker.production
