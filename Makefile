@@ -1,3 +1,6 @@
+tail = 100
+container = backend
+
 build:
 	docker-compose build
 start:
@@ -10,7 +13,7 @@ ps:
 restart: stop start
 
 logs:
-	docker-compose logs -f --tail=100 sidekiq
+	docker-compose logs -f --tail=$(tail) $(container)
 c:
 	docker-compose exec backend rails c
 sh:

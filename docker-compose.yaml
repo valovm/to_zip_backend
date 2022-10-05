@@ -5,14 +5,14 @@ services:
     image: redis:7.0.5
     container_name: to_zip_redis
     volumes:
-      - ../redis:/data
+      - ../data/redis:/data
   db:
     image: postgres:14.1
     container_name: to_zip_postgres
     expose:
       - 5433
     volumes:
-      - ../data:/var/lib/postgresql/data
+      - ../data/postgresql:/var/lib/postgresql/data
     env_file:
       - ./.env.docker.production
     command: -p 5433
@@ -29,7 +29,7 @@ services:
       - db
       - redis
   sidekiq:
-    image: to_zip_backend
+    build: .
     container_name: to_zip_sidekiq
     command: bundle exec sidekiq
     env_file:
