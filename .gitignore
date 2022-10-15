@@ -39,3 +39,4 @@
 /.env.development
 /.env
 /.env.docker.production
+/.env.docker.test

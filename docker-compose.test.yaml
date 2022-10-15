@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:14.1
+    container_name: to_zip_postgres_test
+    env_file:
+      - ./.env.docker.test
+    command: -p 5432
+  backend:
+    build: .
+    container_name: to_zip_backend_test
+    entrypoint: test_docker_entrypoint.sh
+    env_file:
+      - ./.env.docker.test
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    command: rspec spec

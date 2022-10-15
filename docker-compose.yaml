@@ -28,6 +28,7 @@ services:
     depends_on:
       - db
       - redis
+    command: ["rails", "server", "-b", "0.0.0.0", "-h", "3000"]
   sidekiq:
     build: .
     container_name: to_zip_sidekiq
