@@ -4,11 +4,12 @@ module ArchiveConvector
   class Extract
 
     def self.extension_allowlist
-      %w[.rar .tar .7z]
+      # plan: .arj .lha .tar.bz
+      %w[rar tar 7z jar tbz2 tgz]
     end
 
     def call(path_to_file, path_to_folder)
-      raise 'unknown_format_file' unless Extract.extension_allowlist.include? File.extname(path_to_file)
+      raise 'unknown_format_file' if Extract.extension_allowlist.exclude? get_extname(path_to_file)
 
       result_folder = File.join path_to_folder, File.basename(path_to_file, '.*')
       path_to_folder = File.join path_to_folder, SecureRandom.alphanumeric
@@ -20,6 +21,13 @@ module ArchiveConvector
     end
 
     private
+
+    def get_extname(path_to_file)
+      double_extname = File.basename(path_to_file).split('.').last(2).join('.')
+      return double_extname if %w[tar.bz].include?(double_extname)
+
+      File.extname(path_to_file)[1..-1]
+    end
 
     def extract(path_to_file, path_to_folder)
       flags = Archive::EXTRACT_PERM

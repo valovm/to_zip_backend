@@ -18,7 +18,7 @@ RSpec.describe ArchiveConvector::Extract do
     specify do
       path = subject.call path_to_rar_file, path_to_output_folder
       result = folder_to_hash path
-      expect(result).to eq(entries)
+      expect(entries < result).to be_truthy
     end
   end
 
@@ -87,6 +87,156 @@ RSpec.describe ArchiveConvector::Extract do
           'картинка с пробелом(*)(.).jpg' => :file,
           'Финалочка.xlsx' => :file
         }
+      end
+
+      it_behaves_like 'extract_success'
+    end
+
+    context 'JAR file' do
+      let(:path_to_rar_file) do
+        Rails.root.join('spec', 'files', 'archives', 'extract', 'input', 'Кирилица.jar').to_s
+      end
+      let(:entries) do
+        { 'Кирилица' =>
+            {
+              'Подпапка' => {
+                'image.jpg' => :file,
+                'lea.pdf' => :file,
+                'картинка с пробелом(*)(.).jpg' => :file,
+                'Финалочка.xlsx' => :file
+              },
+              'image.jpg' => :file,
+              'lea.pdf' => :file,
+              'картинка с пробелом(*)(.).jpg' => :file,
+              'Финалочка.xlsx' => :file
+            }
+        }
+
+      end
+
+      it_behaves_like 'extract_success'
+    end
+
+    context 'TBZ2 file' do
+      let(:path_to_rar_file) do
+        Rails.root.join('spec', 'files', 'archives', 'extract', 'input', 'Кирилица.tbz2').to_s
+      end
+      let(:entries) do
+        { 'Кирилица' =>
+            {
+              'Подпапка' => {
+                'image.jpg' => :file,
+                'lea.pdf' => :file,
+                'картинка с пробелом(*)(.).jpg' => :file,
+                'Финалочка.xlsx' => :file
+              },
+              'image.jpg' => :file,
+              'lea.pdf' => :file,
+              'картинка с пробелом(*)(.).jpg' => :file,
+              'Финалочка.xlsx' => :file
+            }
+        }
+
+      end
+
+      it_behaves_like 'extract_success'
+    end
+
+    context 'TGZ file' do
+      let(:path_to_rar_file) do
+        Rails.root.join('spec', 'files', 'archives', 'extract', 'input', 'Кирилица.tgz').to_s
+      end
+      let(:entries) do
+        { 'Кирилица' =>
+            {
+              'Подпапка' => {
+                'image.jpg' => :file,
+                'lea.pdf' => :file,
+                'картинка с пробелом(*)(.).jpg' => :file,
+                'Финалочка.xlsx' => :file
+              },
+              'image.jpg' => :file,
+              'lea.pdf' => :file,
+              'картинка с пробелом(*)(.).jpg' => :file,
+              'Финалочка.xlsx' => :file
+            }
+        }
+
+      end
+
+      it_behaves_like 'extract_success'
+    end
+
+    xcontext 'ARJ file' do
+      let(:path_to_rar_file) do
+        Rails.root.join('spec', 'files', 'archives', 'extract', 'input', 'Кирилица.arj').to_s
+      end
+      let(:entries) do
+        { 'Кирилица' =>
+            {
+              'Подпапка' => {
+                'image.jpg' => :file,
+                'lea.pdf' => :file,
+                'картинка с пробелом(*)(.).jpg' => :file,
+                'Финалочка.xlsx' => :file
+              },
+              'image.jpg' => :file,
+              'lea.pdf' => :file,
+              'картинка с пробелом(*)(.).jpg' => :file,
+              'Финалочка.xlsx' => :file
+            }
+        }
+
+      end
+
+      it_behaves_like 'extract_success'
+    end
+
+    xcontext 'LHA file' do
+      let(:path_to_rar_file) do
+        Rails.root.join('spec', 'files', 'archives', 'extract', 'input', 'Кирилица.lha').to_s
+      end
+      let(:entries) do
+        { 'Кирилица' =>
+            {
+              'Подпапка' => {
+                'image.jpg' => :file,
+                'lea.pdf' => :file,
+                'картинка с пробелом(*)(.).jpg' => :file,
+                'Финалочка.xlsx' => :file
+              },
+              'image.jpg' => :file,
+              'lea.pdf' => :file,
+              'картинка с пробелом(*)(.).jpg' => :file,
+              'Финалочка.xlsx' => :file
+            }
+        }
+
+      end
+
+      it_behaves_like 'extract_success'
+    end
+
+    xcontext 'TAR.BZ file' do
+      let(:path_to_rar_file) do
+        Rails.root.join('spec', 'files', 'archives', 'extract', 'input', 'Кирилица.tar.bz').to_s
+      end
+      let(:entries) do
+        { 'Кирилица' =>
+            {
+              'Подпапка' => {
+                'image.jpg' => :file,
+                'lea.pdf' => :file,
+                'картинка с пробелом(*)(.).jpg' => :file,
+                'Финалочка.xlsx' => :file
+              },
+              'image.jpg' => :file,
+              'lea.pdf' => :file,
+              'картинка с пробелом(*)(.).jpg' => :file,
+              'Финалочка.xlsx' => :file
+            }
+        }
+
       end
 
       it_behaves_like 'extract_success'
