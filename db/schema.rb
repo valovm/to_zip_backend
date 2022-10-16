@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_09_20_230739) do
   # These are extensions that must be enabled in order to support this database
-  Fi  enable_extension "pgcrypto"
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
   create_table "archive_files", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

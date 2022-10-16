@@ -4,7 +4,7 @@ module ArchiveConvector
   class Extract
 
     def self.extension_allowlist
-      %w[.rar .tar]
+      %w[.rar .tar .7z]
     end
 
     def call(path_to_file, path_to_folder)
