@@ -18,7 +18,7 @@ RSpec.describe ArchiveConvector::Extract do
     specify do
       path = subject.call path_to_rar_file, path_to_output_folder
       result = folder_to_hash path
-      expect(entries < result).to be_truthy
+      expect(entries <= result).to be_truthy
     end
   end
 
