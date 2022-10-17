@@ -21,8 +21,6 @@ services:
     container_name: to_zip_backend
     env_file:
       - ./.env.docker.production
-    volumes:
-      - .:/app
     ports:
       - '3000:3000'
     depends_on:
@@ -34,8 +32,6 @@ services:
     command: bundle exec sidekiq
     env_file:
       - ./.env.docker.production
-    volumes:
-      - .:/app
     depends_on:
       - db
       - redis
