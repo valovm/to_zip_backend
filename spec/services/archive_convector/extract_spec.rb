@@ -241,5 +241,30 @@ RSpec.describe ArchiveConvector::Extract do
 
       it_behaves_like 'extract_success'
     end
+
+    xcontext 'TAR.7z file' do
+      let(:path_to_rar_file) do
+        Rails.root.join('spec', 'files', 'archives', 'extract', 'input', 'Кирилица.tar.7z').to_s
+      end
+      let(:entries) do
+        { 'Кирилица' =>
+            {
+              'Подпапка' => {
+                'image.jpg' => :file,
+                'lea.pdf' => :file,
+                'картинка с пробелом(*)(.).jpg' => :file,
+                'Финалочка.xlsx' => :file
+              },
+              'image.jpg' => :file,
+              'lea.pdf' => :file,
+              'картинка с пробелом(*)(.).jpg' => :file,
+              'Финалочка.xlsx' => :file
+            }
+        }
+
+      end
+
+      it_behaves_like 'extract_success'
+    end
   end
 end

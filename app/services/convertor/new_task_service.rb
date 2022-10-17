@@ -11,6 +11,7 @@ module Convertor
     private
 
     def validate(file:)
+      return Failure(errors: Array.wrap(:unknown_format_file)) unless Convertor::ConvertService::EXTRACTION_SERVICE.valid?(file.original_filename)
       return Failure(errors: Array.wrap(:filesize_is_too_large)) if file.size > Convertor.max_input_fize_size
       return Failure(errors: Array.wrap(Convertor.status)) unless Convertor.ok?
 
