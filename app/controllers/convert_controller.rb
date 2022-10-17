@@ -4,7 +4,7 @@ class ConvertController < ApplicationController
   def index
     render json: {
       state: ApplicationService.check_status,
-      extract_extname: ArchiveConvector::Extract.extension_allowlist,
+      extract_extname: Convertor::ConvertService::EXTRACTION_SERVICE.extension_allowlist,
       limit_file_size: number_to_human_size(Convertor.max_input_fize_size, precision: 0)
     }
   end

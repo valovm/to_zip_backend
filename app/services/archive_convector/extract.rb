@@ -3,10 +3,10 @@
 module ArchiveConvector
   class Extract
     def valid?(path_to_file)
-      Extract.extension_allowlist.include? get_extname(path_to_file)
+      extension_allowlist.include? get_extname(path_to_file)
     end
 
-    def self.extension_allowlist
+    def extension_allowlist
       # plan: .arj .lha .tar.bz tar.7z
       %w[rar tar 7z jar tbz2 tgz]
     end

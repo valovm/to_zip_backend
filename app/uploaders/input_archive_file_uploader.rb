@@ -36,7 +36,7 @@ class InputArchiveFileUploader < CarrierWave::Uploader::Base
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_allowlist
-    %i[rar tar]
+    Convertor::ConvertService::EXTRACTION_SERVICE.extension_allowlist
   end
 
   def size_range
