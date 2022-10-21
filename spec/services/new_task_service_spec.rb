@@ -18,6 +18,25 @@ RSpec.describe Convertor::NewTaskService do
       end
     end
 
+    context 'race condition' do
+      before do
+        stub_const('Convertor::QUEUE_LIMIT', 2)
+      end
+      specify do
+        concurrency_level = ActiveRecord::Base.connection.pool.size - 1
+        expect(concurrency_level).to be > 2
+        result = []
+        threads = Array.new(concurrency_level) do |_i| ad.new do
+            result << subject.call(file: file)
+          end
+        end
+        threads.each(&:join)
+        expect(ArchiveFile.count).to eq(2)
+        expect(result.count(&:success?)).to eq(2)
+        expect(result.count).to eq(concurrency_level)
+      end
+    end
+
     context 'seed is full' do
       before do
         stub_const('Convertor::SEED_LIMIT', 0)

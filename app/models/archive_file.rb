@@ -3,4 +3,11 @@ class ArchiveFile < ApplicationRecord
   mount_uploader :output, OutputArchiveFileUploader
 
   enum state: { pending: 0, extracting: 1, compressing: 2, seeding: 3, completed: 4, failed: 5 }
+
+  before_create :check_convertor_status
+
+  private
+  def check_convertor_status
+    throw(Convertor.status) unless Convertor.ok?
+  end
 end
